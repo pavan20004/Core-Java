@@ -1,0 +1,13 @@
+package HashMap;
+
+import java.util.Comparator;
+
+public class sortingSal implements Comparator<Employee>{
+
+	@Override
+	public int compare(Employee a, Employee b) {
+		
+		return (int) (a.getSal() - b.getSal());
+	}
+
+}

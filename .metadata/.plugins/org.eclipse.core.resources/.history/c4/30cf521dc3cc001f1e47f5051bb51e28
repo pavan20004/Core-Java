@@ -1,0 +1,78 @@
+package HashMap;
+
+import java.security.KeyStore.Entry;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Employee {
+	
+	private int id;
+	private String ename;
+	private String job;
+	private double sal;
+	
+	public Employee(int id,String ename,String job,double sal) {
+		this.id=id;
+		this.ename=ename;
+		this.job=job;
+		this.sal=sal;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getEname() {
+		return ename;
+	}
+
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+	public double getSal() {
+		return sal;
+	}
+
+	public void setSal(double sal) {
+		this.sal = sal;
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		Map<Integer,Employee> map= new HashMap<>();
+		
+		map.put(106,new Employee(02,"Pavan","clerk",2000.00));
+		map.put(102,new Employee(01,"John","manager",10000.00));
+		map.put(103,new Employee(05,"Mike","supervispor",3000.00));
+		map.put(101,new Employee(03,"Rufus","assisant manager",6000.00));
+		map.put(104,new Employee(04,"Chris","clerk",9000.00));
+		
+		
+		for(Map.Entry<Integer,Employee> entry : map.entrySet()) {
+		
+		System.out.println("Keys = " + entry.getKey());
+		System.out.println("Values = " + entry.getValue());
+		
+		
+		}
+		
+		
+		
+	}
+	
+
+}

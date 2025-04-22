@@ -1,0 +1,119 @@
+package HashMap;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Employee {
+	
+	private int id;
+	private String ename;
+	private String job;
+	private double sal;
+	
+	public Employee(int id,String ename,String job,double sal) {
+		this.id=id;
+		this.ename=ename;
+		this.job=job;
+		this.sal=sal;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getEname() {
+		return ename;
+	}
+
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+	public double getSal() {
+		return sal;
+	}
+
+	public void setSal(double sal) {
+		this.sal = sal;
+	}
+	
+	public String toString() {
+		
+		return  id+ "  " + ename+ "   " + job+ "  " + sal; 
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		
+			Map<Integer,Employee> map= new HashMap<>();
+		
+			map.put(106,new Employee(02,"Pavan","clerk           ",2000.00));
+			map.put(102,new Employee(01,"John ","manager         ",10000.00));
+			map.put(103,new Employee(05,"Mike ","supervispor     ",3000.00));
+			map.put(101,new Employee(03,"Rufus","assisant manager",6000.00));
+			map.put(104,new Employee(04,"Chris","clerk           ",9000.00));
+		
+//		HashMap<Integer,Employee> sortedMap=map.entrySet().stream().sorted(Map.Entry.comparingByKey())
+//		.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(e1,e2) -> e2,LinkedHashMap::new));
+//		
+//		sortedMap.forEach((key,value) -> System.out.println(key+" "+value));
+		
+	
+		List<Map.Entry<Integer, Employee>> entries = new ArrayList<>(map.entrySet());
+		
+		Collections.sort(entries,new Comparator<Map.Entry<Integer,Employee>>(){
+			
+			@Override
+			public int compare(Map.Entry<Integer,Employee> o1,Map.Entry<Integer,Employee>o2) {
+				
+				return  (o1.getValue().getEname().compareToIgnoreCase(o2.getValue().getEname()));
+			}
+			
+		});
+		
+		
+		LinkedHashMap<Integer,Employee> sortedMap = new LinkedHashMap<>();		
+		
+		for(Map.Entry<Integer, Employee> entry : entries) {
+			
+			sortedMap.put(entry.getKey(), entry.getValue());
+		}
+		
+		for(Map.Entry<Integer,Employee> entry : sortedMap.entrySet()) {
+			
+			
+			if(entry.getValue().getJob().equalsIgnoreCase("clerk           ")) {
+				
+				System.out.println(entry.getValue().getJob());
+			}
+			else {
+				
+				System.out.println("not found");
+			}
+			
+			
+		}	
+		
+	}
+	
+
+}
